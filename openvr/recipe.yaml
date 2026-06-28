@@ -1,0 +1,42 @@
+context:
+  name: openvr
+  version: 2.15.6
+
+package:
+  name: ${{name}}
+  version: ${{version}}
+
+source:
+  git: https://github.com/ValveSoftware/openvr.git
+
+build:
+  number: 0
+  script:
+    - cmake ${CMAKE_ARGS}
+    - make
+    - make install
+  always_copy_files:
+    - headers/*.h 
+
+requirements:
+  build:
+    - ${{compiler('cxx')}}
+    - cmake
+    - make
+  host:
+    
+  run:
+    
+
+about:
+  homepage: https://github.com/ValveSoftware/openvr
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: OpenVR SDK.
+  description: OpenVR is an API and runtime that allows access to VR hardware from multiple vendors without requiring that applications have specific knowledge of the hardware they are targeting. 
+  documentation: https://github.com/ValveSoftware/openvr/wiki/API-Documentation
+  repository: https://github.com/ValveSoftware/openvr
+
+extra:
+  recipe-maintainers:
+    - nekiwo
